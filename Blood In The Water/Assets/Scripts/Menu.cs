@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
+    public AudioSource start;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +21,14 @@ public class Menu : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Sendatsu");
+        StartCoroutine(CoinFlip());
+        start.Play();
+    }
+
+    IEnumerator CoinFlip()
+    {
+        yield return new WaitForSeconds(1.51f);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
